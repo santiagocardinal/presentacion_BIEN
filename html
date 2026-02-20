@@ -844,12 +844,14 @@
     .ventaja:hover { background: rgba(255, 255, 255, 0.04); }
     .ventaja + .ventaja { border-top: 1px solid rgba(255, 255, 255, 0.05); }
 
-    .vent-emoji {
-      font-size: 1.5rem;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
+    .vent-punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
     .vent-info strong {
       display: block;
       font-size: 0.94rem;
@@ -1073,12 +1075,15 @@
   <header id="header">
     <nav class="nav-barra wrap">
 
-      <!-- Logo -->
-      <a href="#" class="logo" aria-label="HG Estudio Contable — Inicio">
-        <!-- LOGO OFICIAL -->
-        <img src="logo.jpg" alt="HG Servicios Contables" style="height: 48px; width: auto; display: block;" />
-      </a>
-
+     <!-- Logo -->
+<a href="#" class="logo" aria-label="HG Estudio Contable — Inicio">
+  <!-- LOGO OFICIAL -->
+  <img src="logo.png" alt="HG Servicios Contables" style="height: 48px; width: auto; display: block;" />
+  <div style="display: flex; flex-direction: column; line-height: 1.2;">
+    <span style="font-family: 'DM Serif Display', Georgia, serif; font-size: 1.08rem; color: var(--tinta);">HG </span>
+    <span style="font-family: 'DM Serif Display', Georgia, serif; font-size: 1.08rem; color: var(--tinta);">Servicios Contables </span>
+  </div>
+</a>
       <!-- Navegación desktop -->
       <nav class="nav-desktop" aria-label="Menú principal">
         <a href="#servicios">Servicios</a>
@@ -1112,11 +1117,11 @@
     <!-- Columna izquierda -->
     <div class="hero-izq">
 
-      <div class="hero-badge aparece">Estudio Contable Online</div>
+      <div class="hero-badge aparece">Servicios Contables Online</div>
 
       <h1 class="hero-titulo aparece" style="--delay: 0.10s">
-        <span class="t-claro">HG</span>
-        <span class="t-oscuro">Estudio<br>Contable</span>
+        <span class="tinta">HG</span>
+        <span class="t-oscuro">Servicios<br>Contables</span>
       </h1>
 
       <p class="hero-claim aparece" style="--delay: 0.18s">
@@ -1290,7 +1295,7 @@
   </section>
 
 
-  <!-- ════════════════════════════════════════
+ <!-- ════════════════════════════════════════
        MODALIDAD / BENEFICIOS
   ════════════════════════════════════════ -->
   <section id="modalidad" aria-labelledby="mod-titulo">
@@ -1313,7 +1318,7 @@
     <div class="mod-der">
 
       <div class="ventaja aparece">
-        <span class="vent-emoji">📲</span>
+        <span class="vent-punto"></span>
         <div class="vent-info">
           <strong>Atención por WhatsApp e Instagram</strong>
           <p>Consultás directamente por tus redes favoritas. Sin formularios complicados ni turnos previos.</p>
@@ -1321,7 +1326,7 @@
       </div>
 
       <div class="ventaja aparece" style="--delay: 0.10s">
-        <span class="vent-emoji">⏱</span>
+        <span class="vent-punto"></span>
         <div class="vent-info">
           <strong>Entrega rápida</strong>
           <p>La mayoría de los trámites se resuelven en el mismo día. Tu tiempo vale.</p>
@@ -1329,7 +1334,7 @@
       </div>
 
       <div class="ventaja aparece" style="--delay: 0.20s">
-        <span class="vent-emoji">📍</span>
+        <span class="vent-punto"></span>
         <div class="vent-info">
           <strong>Servicio 100% Online</strong>
           <p>Desde cualquier parte del país. Sin trasladarte, sin filas, todo completamente digital.</p>
@@ -1337,7 +1342,7 @@
       </div>
 
       <div class="ventaja aparece" style="--delay: 0.30s">
-        <span class="vent-emoji">🔐</span>
+        <span class="vent-punto"></span>
         <div class="vent-info">
           <strong>Datos protegidos</strong>
           <p>Tu información personal y financiera se maneja con total confidencialidad y seriedad profesional.</p>
@@ -1401,11 +1406,15 @@
       <div class="footer-grid">
 
         <!-- Columna marca -->
-        <div class="footer-marca">
-          <!-- LOGO OFICIAL -->
-          <img src="logo.jpg" alt="HG Servicios Contables" style="height: 40px; width: auto; display: block; margin-bottom: 14px; filter: brightness(0) invert(1);" />
-          <p>Servicios contables simples, rápidos y seguros. Atención 100% online para todo el país.</p>
-        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+  <img src="logo.png" alt="HG Servicios Contables"
+       style="height:40px; margin-bottom:14px;">
+
+  <div style="display: flex; flex-direction: column; line-height: 1.1;">
+    <span style="font-weight: 600;"> HG Servicios</span>
+    <span style="font-weight: 600;">Contables</span>
+  </div>
+</div>
 
         <!-- Columna servicios -->
         <div class="footer-col">
@@ -1434,7 +1443,7 @@
 
       <!-- Pie del footer -->
       <div class="footer-pie">
-        <span>© 2025 HG Estudio Contable · Todos los derechos reservados</span>
+        <span>© 2025 HG Servicios Contables · Todos los derechos reservados</span>
         <span>Servicio profesional y confiable</span>
       </div>
 
