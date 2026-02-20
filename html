@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HG Estudio Contable – Servicios Contables Online</title>
+  <meta name="description" content="Servicios contables simples, rápidos y seguros. Certificaciones, declaraciones juradas y asesoramiento. Atención 100% online." />
+
+  <!-- ═══════════════════════════════════════
+       FUENTES: Google Fonts (única dependencia
+       externa permitida — solo tipografía)
+  ════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════
+       1. VARIABLES GLOBALES
+    ═══════════════════════════════════════════ */
+    :root {
+      /* Paleta principal — azules */
+      --tinta:        #0a1628;   /* azul muy oscuro — textos, header, footer */
+      --marino:       #0f2e5a;   /* azul marino profundo */
+      --principal:    #1a4fba;   /* azul botones / acentos */
+      --medio:        #2563eb;   /* azul medio hover */
+      --suave:        #dbeafe;   /* azul pálido — fondos de chips */
+      --palido:       #f0f5ff;   /* azul casi blanco — fondo hero y secciones */
+      --blanco:       #ffffff;
+      --gris:         #546480;   /* texto secundario */
+      --linea:        #d4dff0;   /* bordes suaves */
+
+      /* Verde WhatsApp */
+      --verde:        #16a34a;
+      --verde-hover:  #15803d;
+
+      /* Instagram gradient */
+      --ig-start:     #f97316;
+      --ig-end:       #9333ea;
+
+      /* Tipografía */
+      --f-display: 'DM Serif Display', Georgia, serif;
+      --f-body:    'DM Sans', system-ui, sans-serif;
+
+      /* Espaciado y forma */
+      --radio:    8px;
+      --radio-lg: 16px;
+      --trans:    all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      --sombra:   0 4px 24px rgba(10, 22, 40, 0.08);
+      --sombra-h: 0 16px 48px rgba(10, 22, 40, 0.14);
+    }
+
+    /* ═══════════════════════════════════════════
+       2. RESET Y BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--f-body);
+      background-color: var(--blanco);
+      color: var(--tinta);
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a    { text-decoration: none; color: inherit; }
+    ul   { list-style: none; }
+    img  { max-width: 100%; display: block; }
+
+    /* ═══════════════════════════════════════════
+       3. CONTENEDOR Y UTILIDADES
+    ═══════════════════════════════════════════ */
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Etiqueta de sección estilo "overline" */
+    .overline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--principal);
+      margin-bottom: 16px;
+    }
+    .overline::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+    .overline.claro { color: rgba(147, 197, 253, 0.75); }
+
+    /* Título de sección */
+    .sec-titulo {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    /* Subtítulo de sección */
+    .sec-sub {
+      font-size: 0.97rem;
+      color: var(--gris);
+      line-height: 1.8;
+      max-width: 480px;
+    }
+
+    /* ─── Animación de aparición por scroll ─── */
+    .aparece {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition-delay: var(--delay, 0s);
+    }
+    .aparece.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       4. BOTONES
+    ═══════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: var(--radio);
+      font-family: var(--f-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: var(--trans);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    /* Azul sólido */
+    .btn-azul {
+      background: var(--principal);
+      color: var(--blanco);
+      border-color: var(--principal);
+    }
+    .btn-azul:hover {
+      background: var(--marino);
+      border-color: var(--marino);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(26, 79, 186, 0.30);
+    }
+
+    /* Borde azul */
+    .btn-borde {
+      background: transparent;
+      color: var(--principal);
+      border-color: var(--principal);
+    }
+    .btn-borde:hover {
+      background: var(--principal);
+      color: var(--blanco);
+      transform: translateY(-2px);
+    }
+
+    /* Verde WhatsApp */
+    .btn-wa {
+      background: var(--verde);
+      color: var(--blanco);
+      border-color: var(--verde);
+    }
+    .btn-wa:hover {
+      background: var(--verde-hover);
+      border-color: var(--verde-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(22, 163, 74, 0.28);
+    }
+
+    /* Instagram degradado */
+    .btn-ig {
+      background: linear-gradient(135deg, var(--ig-start), var(--ig-end));
+      color: var(--blanco);
+      border-color: transparent;
+    }
+    .btn-ig:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(147, 51, 234, 0.28);
+    }
+
+    /* Blanco (sobre fondos oscuros) */
+    .btn-blanco {
+      background: var(--blanco);
+      color: var(--tinta);
+      border-color: var(--blanco);
+    }
+    .btn-blanco:hover {
+      background: var(--palido);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(255, 255, 255, 0.15);
+    }
+
+    /* ═══════════════════════════════════════════
+       5. HEADER
+    ═══════════════════════════════════════════ */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      /* Transparente al inicio — JS agrega .fijo al hacer scroll */
+      transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    #header.fijo {
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--linea);
+      box-shadow: 0 2px 20px rgba(10, 22, 40, 0.06);
+    }
+
+    .nav-barra {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    /* ── Logo ── */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    /* ─────────────────────────────────────────
+       LOGO: Reemplazar por imagen oficial proporcionada
+    ───────────────────────────────────────── */
+    .logo-caja {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--tinta);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /*
+      Para usar el logo real, eliminar el <span> dentro de .logo-caja
+      y descomentar la siguiente regla:
+
+      .logo-caja img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    */
+    .logo-caja span {
+      font-family: var(--f-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #93c5fd;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .logo-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .logo-nombre {
+      font-family: var(--f-display);
+      font-size: 1.08rem;
+      color: var(--tinta);
+    }
+    .logo-subtitulo {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    /* ── Nav desktop ── */
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+    }
+
+    .nav-desktop a {
+      font-size: 0.83rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--gris);
+      position: relative;
+      transition: color 0.25s;
+    }
+    .nav-desktop a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1.5px;
+      background: var(--principal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-desktop a:hover { color: var(--principal); }
+    .nav-desktop a:hover::after { transform: scaleX(1); }
+
+    /* Botón CTA en nav */
+    .nav-cta {
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--blanco) !important;
+      background: var(--principal);
+      padding: 9px 20px;
+      border-radius: var(--radio);
+      letter-spacing: 0.04em !important;
+      transition: background 0.25s, transform 0.25s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover {
+      background: var(--marino) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ── Hamburguesa (mobile) ── */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--tinta);
+      border-radius: 2px;
+      transition: var(--trans);
+    }
+    .burger.abierto span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger.abierto span:nth-child(2) { opacity: 0; }
+    .burger.abierto span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── Menú mobile ── */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: var(--blanco);
+      border-bottom: 1px solid var(--linea);
+      flex-direction: column;
+      padding: 20px 28px 28px;
+      gap: 0;
+      z-index: 899;
+      box-shadow: 0 8px 24px rgba(10, 22, 40, 0.08);
+    }
+    .nav-mobile.abierto { display: flex; }
+    .nav-mobile a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--tinta);
+      padding: 15px 0;
+      border-bottom: 1px solid var(--linea);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover { color: var(--principal); }
+
+    /* ═══════════════════════════════════════════
+       6. HERO — LAYOUT VERTICAL APILADO
+          Arriba: contenido centrado
+          Abajo:  panel oscuro con stats y pasos
+    ═══════════════════════════════════════════ */
+    #hero {
+      display: flex;
+      flex-direction: column;
+      padding-top: 72px;
+    }
+
+    /* Bloque superior — contenido centrado */
+    .hero-izq {
+      background: var(--blanco);
+      display: flex;
+      flex-direction: column;
+      align-items: center;        /* centra horizontalmente */
+      text-align: center;         /* alinea el texto al centro */
+      padding: 80px 28px 72px;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--principal);
+      margin-bottom: 28px;
+      justify-content: center;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 28px;
+      height: 1.5px;
+      background: var(--principal);
+    }
+
+    .hero-titulo {
+      font-family: var(--f-display);
+      font-size: clamp(3rem, 5.5vw, 5.2rem);
+      font-weight: 400;
+      line-height: 1.0;
+      margin-bottom: 24px;
+      max-width: 700px;
+    }
+    /* Parte clara del título */
+    .t-claro { display: block; color: var(--gris); }
+    /* Parte fuerte del título */
+    .t-oscuro { display: block; color: var(--tinta); }
+
+    .hero-claim {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--principal);
+      margin-bottom: 18px;
+    }
+
+    .hero-desc {
+      font-size: 0.98rem;
+      color: var(--gris);
+      line-height: 1.82;
+      max-width: 520px;
+      margin-bottom: 38px;
+    }
+
+    /* Grupo de botones CTA */
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 44px;
+      justify-content: center;
+    }
+
+    /* Sellos de confianza */
+    .hero-sellos {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sello {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gris);
+    }
+    .sello-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--palido);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    /* Panel inferior — oscuro con stats y pasos, ancho completo */
+    .hero-der {
+      background: var(--tinta);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 64px 28px;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    /* Patrón de puntos de fondo */
+    .hero-der::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(147, 197, 253, 0.10) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    /* Arco decorativo */
+    .hero-der::after {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 1px solid rgba(147, 197, 253, 0.07);
+      pointer-events: none;
+    }
+
+    /* Contenedor interno del panel — ancho limitado y centrado */
+    .hero-der-inner {
+      width: 100%;
+      max-width: 1120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Etiqueta del panel */
+    .panel-etiqueta {
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(147, 197, 253, 0.5);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    /* Grid 2×2 estadísticas — en panel horizontal pasa a 4 columnas */
+    .panel-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radio-lg);
+      overflow: hidden;
+      margin-bottom: 40px;
+      width: 100%;
+      position: relative;
+    }
+    .stat {
+      padding: 26px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      transition: background 0.3s;
+    }
+    .stat:hover { background: rgba(255, 255, 255, 0.07); }
+    .stat strong {
+      display: block;
+      font-family: var(--f-display);
+      font-size: 2.6rem;
+      font-weight: 400;
+      color: var(--blanco);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat strong sup {
+      font-size: 1.3rem;
+      color: #93c5fd;
+    }
+    .stat span {
+      font-size: 0.73rem;
+      color: rgba(255, 255, 255, 0.38);
+      line-height: 1.5;
+    }
+
+    /* Pasos del proceso — dispuestos en fila horizontal */
+    .panel-pasos-titulo {
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(147, 197, 253, 0.5);
+      margin-bottom: 20px;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Contenedor de pasos en fila */
+    .panel-pasos-fila {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radio-lg);
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 28px;
+    }
+
+    .panel-paso {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 22px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      transition: background 0.3s;
+    }
+    .panel-paso:hover { background: rgba(255, 255, 255, 0.06); }
+
+    .panel-paso-n {
+      font-family: var(--f-display);
+      font-size: 1.15rem;
+      color: rgba(147, 197, 253, 0.45);
+      min-width: 28px;
+      line-height: 1.45;
+      flex-shrink: 0;
+    }
+    .panel-paso p {
+      font-size: 0.81rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.55;
+    }
+
+    /* Chips inferiores */
+    .panel-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      justify-content: center;
+      position: relative;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 13px;
+      border-radius: 50px;
+      font-size: 0.71rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: rgba(255, 255, 255, 0.60);
+    }
+
+    /* ═══════════════════════════════════════════
+       7. SECCIÓN SERVICIOS
+    ═══════════════════════════════════════════ */
+    #servicios {
+      padding: 112px 0;
+      background: var(--blanco);
+    }
+
+    .sec-intro {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .sec-intro .sec-sub {
+      margin: 0 auto;
+    }
+    .sec-intro .overline {
+      justify-content: center;
+    }
+    .sec-intro .overline::before { display: none; }
+
+    /* Grid de tarjetas — flex centrado, 3 por fila, última centrada */
+    .srv-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: center;
+    }
+
+    .srv-tarjeta {
+      flex: 1 1 calc(33.333% - 22px);
+      max-width: calc(33.333% - 15px);
+      background: var(--blanco);
+      border: 1px solid var(--linea);
+      border-radius: var(--radio-lg);
+      padding: 34px 26px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--trans);
+      cursor: default;
+    }
+
+    /* Línea de acento superior — aparece en hover */
+    .srv-tarjeta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--principal), #60a5fa);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .srv-tarjeta:hover {
+      border-color: var(--suave);
+      box-shadow: var(--sombra-h);
+      transform: translateY(-6px);
+    }
+    .srv-tarjeta:hover::before { transform: scaleX(1); }
+
+    /* Ícono de servicio */
+    .srv-icono {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--palido);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      transition: background 0.3s, transform 0.35s ease;
+    }
+    .srv-tarjeta:hover .srv-icono {
+      background: var(--suave);
+      transform: scale(1.10) rotate(4deg);
+    }
+
+    .srv-tarjeta h3 {
+      font-family: var(--f-display);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--tinta);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .srv-tarjeta p {
+      font-size: 0.86rem;
+      color: var(--gris);
+      line-height: 1.72;
+      margin-bottom: 18px;
+    }
+
+    /* Badge de servicio */
+    .srv-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--principal);
+      background: var(--palido);
+      padding: 5px 12px;
+      border-radius: 50px;
+      border: 1px solid var(--suave);
+    }
+
+    /* ═══════════════════════════════════════════
+       8. SECCIÓN MODALIDAD — DOS MITADES
+    ═══════════════════════════════════════════ */
+    #modalidad {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Mitad izquierda — azul marino */
+    .mod-izq {
+      background: var(--marino);
+      padding: 100px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mod-titulo {
+      font-family: var(--f-display);
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 400;
+      color: var(--blanco);
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+    .mod-titulo em {
+      font-style: italic;
+      color: #93c5fd;
+    }
+
+    .mod-desc {
+      font-size: 0.91rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.82;
+      max-width: 360px;
+      margin-bottom: 36px;
+    }
+
+    /* Estadísticas dentro de la columna oscura */
+    .mod-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .mod-stat strong {
+      display: block;
+      font-family: var(--f-display);
+      font-size: 2.2rem;
+      color: var(--blanco);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .mod-stat span {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Mitad derecha — negro */
+    .mod-der {
+      background: #07121f;
+      padding: 100px 28px 100px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Cada ventaja / beneficio */
+    .ventaja {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 24px 18px;
+      border-radius: var(--radio);
+      transition: background 0.3s;
+    }
+    .ventaja:hover { background: rgba(255, 255, 255, 0.04); }
+    .ventaja + .ventaja { border-top: 1px solid rgba(255, 255, 255, 0.05); }
+
+    .vent-emoji {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .vent-info strong {
+      display: block;
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--blanco);
+      margin-bottom: 5px;
+    }
+    .vent-info p {
+      font-size: 0.81rem;
+      color: rgba(255, 255, 255, 0.40);
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════
+       9. CALL TO ACTION
+    ═══════════════════════════════════════════ */
+    #contacto {
+      padding: 112px 0;
+      background: var(--palido);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Resplandor de fondo */
+    #contacto::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26, 79, 186, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Líneas decorativas de fondo */
+    #contacto::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26, 79, 186, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 79, 186, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .cta-caja {
+      max-width: 580px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-titulo {
+      font-family: var(--f-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 400;
+      color: var(--tinta);
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+    .cta-titulo em {
+      font-style: italic;
+      color: var(--principal);
+    }
+
+    .cta-desc {
+      font-size: 0.96rem;
+      color: var(--gris);
+      line-height: 1.8;
+      max-width: 420px;
+      margin: 0 auto 40px;
+    }
+
+    .cta-botones {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ═══════════════════════════════════════════
+       10. FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      background: var(--tinta);
+      color: rgba(255, 255, 255, 0.45);
+      padding: 64px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 56px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      margin-bottom: 28px;
+    }
+
+    /* Columna marca */
+    .footer-marca .logo-nombre { color: var(--blanco); }
+    .footer-marca .logo-subtitulo { color: rgba(255, 255, 255, 0.3); }
+    .footer-marca .logo-caja {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .footer-marca p {
+      font-size: 0.83rem;
+      line-height: 1.78;
+      margin-top: 18px;
+      max-width: 260px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.26);
+      margin-bottom: 18px;
+    }
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col a {
+      font-size: 0.83rem;
+      color: rgba(255, 255, 255, 0.44);
+      transition: color 0.22s;
+    }
+    .footer-col a:hover { color: var(--blanco); }
+
+    .footer-pie {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       11. BOTÓN VOLVER ARRIBA
+    ═══════════════════════════════════════════ */
+    #btn-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
+      border-radius: var(--radio);
+      background: var(--tinta);
+      color: var(--blanco);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: var(--trans);
+      box-shadow: 0 8px 24px rgba(10, 22, 40, 0.28);
+      z-index: 888;
+    }
+    #btn-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+    #btn-top:hover { background: var(--principal); }
+
+    /* ═══════════════════════════════════════════
+       12. RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      /* Header */
+      .nav-desktop { display: none; }
+      .burger      { display: flex; }
+
+      /* Hero — el panel inferior ahora siempre es visible, ajustar grid de stats y pasos */
+      .hero-izq    { padding: 64px 28px 56px; }
+      .panel-stats       { grid-template-columns: repeat(2, 1fr); }
+      .panel-pasos-fila  { grid-template-columns: repeat(2, 1fr); }
+
+      /* Servicios — 2 columnas en tablet */
+      .srv-tarjeta { flex: 1 1 calc(50% - 22px); max-width: calc(50% - 11px); }
+
+      /* Modalidad */
+      #modalidad { grid-template-columns: 1fr; }
+      .mod-izq   { padding: 72px 28px; max-width: none; margin: 0; }
+      .mod-der   { padding: 72px 28px; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-pie  { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (max-width: 580px) {
+      /* 1 columna en móvil */
+      .srv-tarjeta       { flex: 1 1 100%; max-width: 100%; }
+      .hero-cta          { flex-direction: column; align-items: center; }
+      .cta-botones       { flex-direction: column; align-items: center; }
+      .hero-sellos       { gap: 14px; }
+      .mod-stats         { gap: 20px; }
+      .wrap              { padding: 0 20px; }
+      .hero-izq          { padding: 52px 20px 44px; }
+      .hero-der          { padding: 48px 20px; }
+      .panel-stats       { grid-template-columns: repeat(2, 1fr); }
+      .panel-pasos-fila  { grid-template-columns: 1fr; }
+      .mod-izq,
+      .mod-der           { padding: 64px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════ -->
+  <header id="header">
+    <nav class="nav-barra wrap">
+
+      <!-- Logo -->
+      <a href="#" class="logo" aria-label="HG Estudio Contable — Inicio">
+        <!-- LOGO OFICIAL -->
+        <img src="logo.jpg" alt="HG Servicios Contables" style="height: 48px; width: auto; display: block;" />
+      </a>
+
+      <!-- Navegación desktop -->
+      <nav class="nav-desktop" aria-label="Menú principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#modalidad">Modalidad</a>
+        <a href="#contacto" class="nav-cta">Contactar</a>
+      </nav>
+
+      <!-- Botón hamburguesa (mobile) -->
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+  </header>
+
+  <!-- Menú mobile desplegable -->
+  <nav class="nav-mobile" id="navMobile" aria-label="Menú mobile">
+    <a href="#servicios" class="mob-link">Servicios</a>
+    <a href="#modalidad" class="mob-link">Modalidad</a>
+    <a href="#contacto"  class="mob-link">Contactar</a>
+  </nav>
+
+
+  <!-- ════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section id="hero" aria-label="Presentación">
+
+    <!-- Columna izquierda -->
+    <div class="hero-izq">
+
+      <div class="hero-badge aparece">Estudio Contable Online</div>
+
+      <h1 class="hero-titulo aparece" style="--delay: 0.10s">
+        <span class="t-claro">HG</span>
+        <span class="t-oscuro">Estudio<br>Contable</span>
+      </h1>
+
+      <p class="hero-claim aparece" style="--delay: 0.18s">
+        Servicios Contables – Atención Online
+      </p>
+
+      <p class="hero-desc aparece" style="--delay: 0.26s">
+        Realizamos trabajos contables simples de forma rápida y segura.
+        Certificaciones, declaraciones juradas y asesoramiento profesional
+        desde donde estés.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-cta aparece" style="--delay: 0.34s">
+        <!-- IMPORTANTE: Reemplazá el # por tu número real:
+             https://wa.me/5491XXXXXXXXX?text=Hola%2C+necesito+información -->
+        <a href="#" class="btn btn-wa" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+          <!-- Ícono SVG WhatsApp -->
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.556 4.116 1.524 5.851L0 24l6.341-1.492A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.006-1.375l-.361-.215-3.731.879.939-3.588-.237-.373A9.779 9.779 0 012.182 12C2.182 6.566 6.566 2.182 12 2.182S21.818 6.566 21.818 12 17.434 21.818 12 21.818z"/>
+          </svg>
+          WhatsApp
+        </a>
+        <!-- IMPORTANTE: Reemplazá el # por: https://instagram.com/TU_USUARIO -->
+        <a href="#" class="btn btn-ig" target="_blank" rel="noopener noreferrer" aria-label="Contactar por Instagram">
+          <!-- Ícono SVG Instagram -->
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+          Instagram
+        </a>
+        <a href="#servicios" class="btn btn-borde">Ver servicios</a>
+      </div>
+
+      <!-- Sellos de confianza -->
+      <div class="hero-sellos aparece" style="--delay: 0.42s">
+        <div class="sello">
+          <div class="sello-dot">⚡</div>
+          Entrega rápida
+        </div>
+        <div class="sello">
+          <div class="sello-dot">🔒</div>
+          Proceso seguro
+        </div>
+        <div class="sello">
+          <div class="sello-dot">🌐</div>
+          100% online
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Panel inferior — oscuro con stats y pasos -->
+    <div class="hero-der" aria-hidden="true">
+      <div class="hero-der-inner">
+
+        <!-- Pasos del proceso — 4 columnas en desktop, 1 en mobile -->
+        <p class="panel-pasos-titulo">Cómo funciona</p>
+        <div class="panel-pasos-fila">
+          <div class="panel-paso">
+            <span class="panel-paso-n">01</span>
+            <p>Nos contactás por WhatsApp o Instagram.</p>
+          </div>
+          <div class="panel-paso">
+            <span class="panel-paso-n">02</span>
+            <p>Enviás la documentación de forma segura.</p>
+          </div>
+          <div class="panel-paso">
+            <span class="panel-paso-n">03</span>
+            <p>Procesamos tu trámite con rapidez.</p>
+          </div>
+          <div class="panel-paso">
+            <span class="panel-paso-n">04</span>
+            <p>Recibís el certificado listo para usar.</p>
+          </div>
+        </div>
+
+        <!-- Chips -->
+        <div class="panel-chips">
+          <span class="chip">📲 WhatsApp</span>
+          <span class="chip">📸 Instagram</span>
+          <span class="chip">🔐 Datos seguros</span>
+          <span class="chip">📍 Todo el país</span>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       SERVICIOS
+  ════════════════════════════════════════ -->
+  <section id="servicios" aria-labelledby="srv-titulo">
+    <div class="wrap">
+
+      <!-- Encabezado de sección -->
+      <div class="sec-intro">
+        <div class="overline aparece">Lo que ofrecemos</div>
+        <h2 class="sec-titulo aparece" id="srv-titulo" style="--delay: 0.08s">
+          Nuestros Servicios
+        </h2>
+        <p class="sec-sub aparece" style="--delay: 0.16s">
+          Soluciones contables claras, simples y a tiempo.
+          Sin burocracia, sin complicaciones.
+        </p>
+      </div>
+
+      <!-- Grid de tarjetas -->
+      <div class="srv-grid">
+
+        <!-- Servicio 1 -->
+        <div class="srv-tarjeta aparece">
+          <div class="srv-icono">📄</div>
+          <h3>Certificación de Ingresos</h3>
+          <p>
+            Documentación oficial que acredita tus ingresos para trámites
+            personales, laborales o ante organismos públicos.
+          </p>
+          <span class="srv-badge">✓ Entrega rápida</span>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div class="srv-tarjeta aparece" style="--delay: 0.08s">
+          <div class="srv-icono">🏠</div>
+          <h3>Certificación para Alquiler</h3>
+          <p>
+            Documentación contable para contratos de locación.
+            Acreditamos tu solvencia ante inmobiliarias y propietarios.
+          </p>
+          <span class="srv-badge">✓ Aceptada por inmobiliarias</span>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div class="srv-tarjeta aparece" style="--delay: 0.16s">
+          <div class="srv-icono">🏦</div>
+          <h3>Certificaciones Bancarias</h3>
+          <p>
+            Certificados contables para presentar ante bancos y entidades
+            financieras. Proceso simple y seguro.
+          </p>
+          <span class="srv-badge">✓ Avalado por contador</span>
+        </div>
+
+        <!-- Servicio 4 -->
+        <div class="srv-tarjeta aparece" style="--delay: 0.24s">
+          <div class="srv-icono">✅</div>
+          <h3>Declaraciones Juradas Simples</h3>
+          <p>
+            Confección de declaraciones juradas de manera ágil, con
+            asesoramiento claro y personalizado.
+          </p>
+          <span class="srv-badge">✓ Proceso guiado</span>
+        </div>
+
+        <!-- Servicio 5 -->
+        <div class="srv-tarjeta aparece" style="--delay: 0.32s">
+          <div class="srv-icono">💬</div>
+          <h3>Asesoramiento Básico</h3>
+          <p>
+            Consultas y orientación contable para personas, monotributistas
+            y pequeños emprendedores. Respuestas claras.
+          </p>
+          <span class="srv-badge">✓ Atención personalizada</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       MODALIDAD / BENEFICIOS
+  ════════════════════════════════════════ -->
+  <section id="modalidad" aria-labelledby="mod-titulo">
+
+    <!-- Mitad izquierda — descripción -->
+    <div class="mod-izq">
+      <div class="overline claro aparece">Cómo trabajamos</div>
+      <h2 class="mod-titulo aparece" id="mod-titulo" style="--delay: 0.08s">
+        Simple,<br><em>rápido</em><br>y seguro
+      </h2>
+      <p class="mod-desc aparece" style="--delay: 0.16s">
+        Todo 100% online. Nos contactás, nos enviás la información
+        y nosotros hacemos el resto. Sin trasladarte, sin filas,
+        sin esperas innecesarias.
+      </p>
+      </div>
+    </div>
+
+    <!-- Mitad derecha — beneficios -->
+    <div class="mod-der">
+
+      <div class="ventaja aparece">
+        <span class="vent-emoji">📲</span>
+        <div class="vent-info">
+          <strong>Atención por WhatsApp e Instagram</strong>
+          <p>Consultás directamente por tus redes favoritas. Sin formularios complicados ni turnos previos.</p>
+        </div>
+      </div>
+
+      <div class="ventaja aparece" style="--delay: 0.10s">
+        <span class="vent-emoji">⏱</span>
+        <div class="vent-info">
+          <strong>Entrega rápida</strong>
+          <p>La mayoría de los trámites se resuelven en el mismo día. Tu tiempo vale.</p>
+        </div>
+      </div>
+
+      <div class="ventaja aparece" style="--delay: 0.20s">
+        <span class="vent-emoji">📍</span>
+        <div class="vent-info">
+          <strong>Servicio 100% Online</strong>
+          <p>Desde cualquier parte del país. Sin trasladarte, sin filas, todo completamente digital.</p>
+        </div>
+      </div>
+
+      <div class="ventaja aparece" style="--delay: 0.30s">
+        <span class="vent-emoji">🔐</span>
+        <div class="vent-info">
+          <strong>Datos protegidos</strong>
+          <p>Tu información personal y financiera se maneja con total confidencialidad y seriedad profesional.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       CALL TO ACTION
+  ════════════════════════════════════════ -->
+  <section id="contacto" aria-labelledby="cta-titulo">
+    <div class="wrap">
+      <div class="cta-caja">
+
+        <div class="overline aparece" style="justify-content: center;">
+          ¿Necesitás ayuda?
+        </div>
+
+        <h2 class="cta-titulo aparece" id="cta-titulo" style="--delay: 0.08s">
+          Contactanos y<br><em>resolvemos juntos</em>
+        </h2>
+
+        <p class="cta-desc aparece" style="--delay: 0.16s">
+          Estamos disponibles para asesorarte sin compromiso.
+          Elegí el canal que más te guste y escribinos ahora.
+        </p>
+
+        <div class="cta-botones aparece" style="--delay: 0.24s">
+          <!-- IMPORTANTE: Reemplazá # por: https://wa.me/5491XXXXXXXXX -->
+          <a href="#" class="btn btn-wa" target="_blank" rel="noopener noreferrer">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.556 4.116 1.524 5.851L0 24l6.341-1.492A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.006-1.375l-.361-.215-3.731.879.939-3.588-.237-.373A9.779 9.779 0 012.182 12C2.182 6.566 6.566 2.182 12 2.182S21.818 6.566 21.818 12 17.434 21.818 12 21.818z"/>
+            </svg>
+            WhatsApp
+          </a>
+          <!-- IMPORTANTE: Reemplazá # por: https://instagram.com/TU_USUARIO -->
+          <a href="#" class="btn btn-ig" target="_blank" rel="noopener noreferrer">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+            Instagram
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer>
+    <div class="wrap">
+
+      <div class="footer-grid">
+
+        <!-- Columna marca -->
+        <div class="footer-marca">
+          <!-- LOGO OFICIAL -->
+          <img src="logo.jpg" alt="HG Servicios Contables" style="height: 40px; width: auto; display: block; margin-bottom: 14px; filter: brightness(0) invert(1);" />
+          <p>Servicios contables simples, rápidos y seguros. Atención 100% online para todo el país.</p>
+        </div>
+
+        <!-- Columna servicios -->
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#servicios">Certificación de ingresos</a></li>
+            <li><a href="#servicios">Certificación para alquiler</a></li>
+            <li><a href="#servicios">Certificaciones bancarias</a></li>
+            <li><a href="#servicios">Declaraciones juradas</a></li>
+            <li><a href="#servicios">Asesoramiento básico</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna contacto -->
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <!-- IMPORTANTE: Reemplazá # por tus links reales -->
+            <li><a href="#">WhatsApp</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#modalidad">Cómo trabajamos</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Pie del footer -->
+      <div class="footer-pie">
+        <span>© 2025 HG Estudio Contable · Todos los derechos reservados</span>
+        <span>Servicio profesional y confiable</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Botón volver arriba -->
+  <button id="btn-top" aria-label="Volver al inicio">▲</button>
+
+
+  <!-- ════════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════════ -->
+  <script>
+    /* ══════════════════════════════════════════
+       1. HEADER — sombra y fondo al hacer scroll
+    ══════════════════════════════════════════ */
+    const header = document.getElementById('header');
+
+    window.addEventListener('scroll', () => {
+      // Agrega clase '.fijo' después de 30px de scroll
+      header.classList.toggle('fijo', window.scrollY > 30);
+    });
+
+
+    /* ══════════════════════════════════════════
+       2. BOTÓN VOLVER ARRIBA
+    ══════════════════════════════════════════ */
+    const btnTop = document.getElementById('btn-top');
+
+    window.addEventListener('scroll', () => {
+      // Muestra el botón después de 400px de scroll
+      btnTop.classList.toggle('visible', window.scrollY > 400);
+    });
+
+    btnTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+    /* ══════════════════════════════════════════
+       3. MENÚ HAMBURGUESA (mobile)
+    ══════════════════════════════════════════ */
+    const burger    = document.getElementById('burger');
+    const navMobile = document.getElementById('navMobile');
+
+    burger.addEventListener('click', () => {
+      // Alterna clases 'abierto' en el botón y en el menú
+      const abierto = burger.classList.toggle('abierto');
+      navMobile.classList.toggle('abierto', abierto);
+      // Accesibilidad: actualiza aria-expanded
+      burger.setAttribute('aria-expanded', abierto);
+    });
+
+    // Cierra el menú al hacer click en cualquier enlace mobile
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('abierto');
+        navMobile.classList.remove('abierto');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+
+    /* ══════════════════════════════════════════
+       4. ANIMACIONES FADE-IN AL HACER SCROLL
+          IntersectionObserver detecta cuándo
+          cada .aparece entra en el viewport
+    ══════════════════════════════════════════ */
+    const elementos = document.querySelectorAll('.aparece');
+
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach(entrada => {
+          if (entrada.isIntersecting) {
+            // Agrega .visible → el CSS aplica la transición de aparición
+            entrada.target.classList.add('visible');
+            // Deja de observar el elemento (se anima solo una vez)
+            observador.unobserve(entrada.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12  // Se activa cuando el 12% del elemento es visible
+      }
+    );
+
+    // Registra todos los elementos animables
+    elementos.forEach(el => observador.observe(el));
+
+  </script>
+
+</body>
+</html>
